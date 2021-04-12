@@ -1,0 +1,16 @@
+:root {
+    --bg-color: white;
+    --text-color: black;
+    --input-bg: white;
+}
+
+body{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+input,
+option,
+select{
+    background-color: var(--input-bg) !important;
+}

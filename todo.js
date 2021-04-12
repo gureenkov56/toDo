@@ -97,14 +97,39 @@ function addNewTask(title, description) {
 function clickBtnDeleteTask(e) {
 	if (e.target.classList.contains('btn-danger')) {
 		const parentDiv = e.target.closest('[data-task-id');
-        const id = parentDiv.dataset.taskId;
+		const id = parentDiv.dataset.taskId;
 		deleteParentDiv(parentDiv);
 	}
 }
 
-function deleteParentDiv(div){
-    const isConfirm = confirm("Действительно удалить задачу?");
-    if (isConfirm) {
-        div.remove();
-    }
+function deleteParentDiv(div) {
+	const isConfirm = confirm('Действительно удалить задачу?');
+	if (isConfirm) {
+		div.remove();
+	}
+}
+
+// Меняем тему
+
+const themes = {
+	white: {
+		'--bg-color': 'white',
+		'--text-color': 'black',
+		'--input-bg': 'white',
+	},
+
+	dark: {
+		'--bg-color': '#001020',
+		'--text-color': '#c9ebe4',
+		'--input-bg': '#b2d4cd',
+	},
+};
+const select = document.querySelector('#choose-theme');
+select.addEventListener('change', changeTheme);
+
+function changeTheme() {
+	const selectedTheme = themes[select.value];
+	Object.entries(selectedTheme).forEach(([key, val]) => {
+		document.documentElement.style.setProperty(key, val);
+	});
 }
