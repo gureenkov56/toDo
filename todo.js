@@ -125,10 +125,20 @@ const themes = {
 	},
 };
 const select = document.querySelector('#choose-theme');
+let lastSelectedTheme = localStorage.getItem('theme') || 'white';
+setTheme(lastSelectedTheme);
+
 select.addEventListener('change', changeTheme);
 
-function changeTheme() {
-	const selectedTheme = themes[select.value];
+function changeTheme(lastSelectedTheme) {
+	const choosenTheme = select.value;
+	localStorage.setItem("theme", choosenTheme);
+	setTheme(choosenTheme);
+}
+
+function setTheme(nameTheme) {
+	select.value = nameTheme;
+	const selectedTheme = themes[nameTheme];
 	Object.entries(selectedTheme).forEach(([key, val]) => {
 		document.documentElement.style.setProperty(key, val);
 	});
